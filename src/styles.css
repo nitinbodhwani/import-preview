@@ -36,15 +36,15 @@ li a:hover:not(.active) {
 
 .mainDiv1{
     height: 105px;
-    width:210px;
+    width:12%;
 }
 .mainDiv2{
-    width: 1500px;
+    width: 88%;
     color:#24b8c9;
     background-color: white;
 }
 .mainDiv3{
-    width:210px;
+    width:12%;
     background-color:#3d4953;
     height: 670px;
     /*height:638px;*/
@@ -53,8 +53,7 @@ li a:hover:not(.active) {
     text-align: center;
 }
 .mainDiv4{
-    width: 1500px;
-    height: auto;
+    width: 88%;
 }
 .fileHeader{
     text-align: center;
