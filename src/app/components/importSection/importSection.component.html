@@ -1,0 +1,42 @@
+<div>
+    <div class="container">   
+        <div class="jumbotron">
+            <input type="file" id="hideFileInputButton" #fileName [hidden]="true" xlsx [xlsxModel]="data" multiple="false" (fileData)="DataRecieved($event)">
+            <button class="btn btn-primary" (click)="SelectFile()">Select File</button>
+            <input type="text"[(ngModel)]="FileName" disabled placeholder="selected file is...">
+            <!-- <button class="btn btn-primary" (click)="ImportDisplay()">Import</button> -->
+            <button class="btn btn-primary" id="uploadBotton">Upload</button>
+        </div>
+        <!-- <div class="jumbotron">
+            <div>
+                <input type="file" xlsx [xlsxModel]="data" multiple="false" (fileData)="DataRecieved($event)"> 
+            </div>
+        </div> -->
+        <div class="well">
+            <table class="table table-responsive">
+                <tr>
+                    <th>Node</th>
+                    <th>Panel</th>
+                    <th>Event</th>
+                    <th>Event Date/Time</th>
+                    <th>Card No</th>
+                    <th>Card Name</th>
+                    <th>Location</th>
+                    <th>Rdr</th>
+                    <th>Affiliation</th>
+                </tr>
+                <tr *ngFor="let item of recievedFileData.Sheet1">
+                    <td>{{item.Node}}</td>
+                    <td>{{item.Panel}}</td>
+                    <td>{{item.Event}}</td>
+                    <td>{{item.Event_Date_Time}}</td>
+                    <td>{{item.Card_No}}</td>
+                    <td>{{item.Card_Name}}</td>
+                    <td>{{item.Location}}</td>
+                    <td>{{item.Rdr}}</td>
+                    <td>{{item.Affiliation}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
