@@ -7,6 +7,9 @@ import { AppComponent } from './app.component';
 import {MainPanelComponent} from './components/mainPanel/mainPanel.component';
 import {ImportSectionComponent} from './components/importSection/importSection.component';
 import {XLSXDirective} from './directives/xlsx.directive'
+import { ImportReportComponent } from './components/import-report/import-report.component';
+import { DataTableComponent } from './components/data-table/data-table.component';
+import { NgTableComponent, NgTableFilteringDirective, NgTablePagingDirective, NgTableSortingDirective, Ng2TableModule } from 'ng2-table';
 
 
 @NgModule({
@@ -14,13 +17,19 @@ import {XLSXDirective} from './directives/xlsx.directive'
     AppComponent,
     MainPanelComponent,
     ImportSectionComponent,
-    XLSXDirective
+    XLSXDirective,
+    ImportReportComponent,
+    DataTableComponent,
+    //NgTableComponent, NgTableFilteringDirective, NgTablePagingDirective, NgTableSortingDirective
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    Ng2TableModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent]  
+  //bootstrap: [ImportReportComponent]
+  //bootstrap: [DataTableComponent]  
 })
 export class AppModule { }
