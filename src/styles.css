@@ -71,4 +71,7 @@ li a:hover:not(.active) {
     width: 88%;
     left: 12%;
 }
+.jumbo{
+    margin-top: 10px;
+}
 
