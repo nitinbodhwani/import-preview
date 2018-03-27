@@ -14,15 +14,16 @@ body{
     /* position: fixed; */
     /* height: 660px; */
     overflow: auto;
+
 }
 
 li a {
     display: block;
-    color: #24b8c9;
+    color: #868e96;
     /* padding: 8px 16px; */
     text-decoration: none;
     /* text-align: center; */
-    font-size: 20pt;
+    font-size: 16pt;
 }
 
 li a.active {
@@ -100,11 +101,21 @@ li a:hover:not(.active) {
     background-color: #343a40;
     color: #868e96;
 }
+
+.div2Text{
+    float: right;
+    padding-top: 15px;
+    padding-right: 25px;
+    font-size: 16pt;
+    color: white;
+}
+
 .div3{
     width: 17%;
     background-color: #343a40;
     height: 80%;
     min-height: 965px;
+    padding-top: 20px;
     color: #868e96;
     text-align: center;
     position: fixed;
@@ -147,4 +158,5 @@ li a:hover:not(.active) {
     z-index:999;
     padding-top: 15px;
 }
+
 
