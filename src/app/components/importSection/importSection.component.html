@@ -1,11 +1,21 @@
 <div>
-    <div class="container">   
-        <div class="jumbotron">
+    <div class="mainImportDiv">   
+        <div class="selFileSec">
             <input type="file" id="hideFileInputButton" #fileName [hidden]="true" xlsx [xlsxModel]="data" multiple="false" (fileData)="DataRecieved($event)">
-            <button class="btn btn-primary" (click)="SelectFile()">Select File</button>
-            <input type="text"[(ngModel)]="FileName" disabled placeholder="selected file is...">
+        
+            <table>
+                <tr>
+                    <td>
+                        <input type="text" [(ngModel)]="FileName" disabled placeholder="selected file is...">
+                    </td>
+                    <td>
+                        <button class="btn btn-primary" (click)="SelectFile()" id="selFileBtn">Select File</button>
+                    </td>
+                </tr>
+            </table>
             <!-- <button class="btn btn-primary" (click)="ImportDisplay()">Import</button> -->
-            <button class="btn btn-primary" id="uploadBotton">Upload</button>
+            <!-- <button class="btn btn-primary" id="uploadBotton">Upload</button> -->
+        
         </div>
         <!-- <div class="jumbotron">
             <div>
@@ -13,8 +23,10 @@
             </div>
         </div> -->
         <!-- <data-table [columns] = "reportColumnOptions" [rows] = "recievedFileData.Sheet1" #dtCtrl></data-table> -->
-        <data-table></data-table>
-
+        <div class= "dataGridContainer">
+            <span *ngIf="!showGrid">No Data to show</span>
+            <data-table *ngIf="showGrid"></data-table>
+        </div>
         <!-- <div class="well">
             <table class="table table-responsive">
                 <tr>

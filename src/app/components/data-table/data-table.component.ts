@@ -198,7 +198,10 @@ export class DataTableComponent implements OnInit{
     }
 
     public onDataChange():void {
+
         this.data = this.rows;
+        //this.numPages = ((this.rows && this.rows.length) ? (this.rows.length / this.itemsPerPage) : 1 );
+        this.itemsPerPage =  ((this.rows && this.rows.length) ? this.rows.length: 10 );
         this.onChangeTable(this.config);
     }
 }
