@@ -8,6 +8,10 @@ import {MainPanelComponent} from './components/mainPanel/mainPanel.component';
 import {ImportSectionComponent} from './components/importSection/importSection.component';
 import {XLSXDirective} from './directives/xlsx.directive';
 import {SelectMonthYearPopUp} from './components/modalPopUps/selectMonthYearPopUp';
+import { ImportReportComponent } from './components/import-report/import-report.component';
+import { DataTableComponent } from './components/data-table/data-table.component';
+import { NgTableComponent, NgTableFilteringDirective, NgTablePagingDirective, NgTableSortingDirective, Ng2TableModule } from 'ng2-table';
+import {ImportTemplateComponent} from './components/importTemplate/importTemplate.component';
 
 
 @NgModule({
@@ -17,19 +21,29 @@ import {SelectMonthYearPopUp} from './components/modalPopUps/selectMonthYearPopU
     ImportSectionComponent,
     XLSXDirective,
     SelectMonthYearPopUp,
+    ImportReportComponent,
+    DataTableComponent,
+    ImportTemplateComponent
+    //NgTableComponent, NgTableFilteringDirective, NgTablePagingDirective, NgTableSortingDirective
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    Ng2TableModule
   ],
   entryComponents: [
     SelectMonthYearPopUp,
 ],
   providers: [],
+
   bootstrap: [AppComponent],
+  //bootstrap: [ImportReportComponent],
   exports:[
     SelectMonthYearPopUp
   ]
+  //bootstrap: [ImportReportComponent]
+  //bootstrap: [DataTableComponent]  
+
 })
 export class AppModule { }

@@ -12,7 +12,10 @@
                 <input type="file" xlsx [xlsxModel]="data" multiple="false" (fileData)="DataRecieved($event)"> 
             </div>
         </div> -->
-        <div class="well">
+        <!-- <data-table [columns] = "reportColumnOptions" [rows] = "recievedFileData.Sheet1" #dtCtrl></data-table> -->
+        <data-table></data-table>
+
+        <!-- <div class="well">
             <table class="table table-responsive">
                 <tr>
                     <th>Node</th>
@@ -26,17 +29,17 @@
                     <th>Affiliation</th>
                 </tr>
                 <tr *ngFor="let item of recievedFileData.Sheet1">
-                    <td>{{item.Node}}</td>
-                    <td>{{item.Panel}}</td>
-                    <td>{{item.Event}}</td>
-                    <td>{{item.Event_Date_Time}}</td>
-                    <td>{{item.Card_No}}</td>
-                    <td>{{item.Card_Name}}</td>
-                    <td>{{item.Location}}</td>
-                    <td>{{item.Rdr}}</td>
-                    <td>{{item.Affiliation}}</td>
+                    <td>{{item["Node"]}}</td>
+                    <td>{{item["Panel"]}}</td>
+                    <td>{{item["Event"]}}</td>
+                    <td>{{item["Event Date/Time"]}}</td>
+                    <td>{{item["Card No."]}}</td>
+                    <td>{{item["Card Name"]}}</td>
+                    <td>{{item["Location"]}}</td>
+                    <td>{{item["Rdr"]}}</td>
+                    <td>{{item["Affiliation"]}}</td>
                 </tr>
             </table>
-        </div>
+        </div> -->
     </div>
 </div>

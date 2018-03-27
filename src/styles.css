@@ -1,6 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 body{
     background-color: rgb(235, 242, 247);
+    height: 100%;
+    width: 100%;
 }
 
  ul {
@@ -74,4 +76,53 @@ li a:hover:not(.active) {
 .jumbo{
     margin-top: 10px;
 }
+
+
+.div1{
+    width: 17%;
+    height: 20%;
+    min-height: 70px;
+    padding-top: 15px;
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    font-size: 18pt;
+}
+.div2{
+    width: 83%;
+    height: 20%;
+    min-height: 70px;
+    background-color: #343a40;
+    color: #868e96;
+}
+.div3{
+    width: 17%;
+    background-color: #343a40;
+    height: 80%;
+    min-height: 965px;
+    color: #868e96;
+    text-align: center;
+    position: fixed;
+    z-index: 999;
+}
+.div4{
+    width: 83%;
+    position: relative;
+    left:17%;
+}
+.topHeaderSection{
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+}
+.bottomBodySection{
+    position: relative;
+    top:70px;
+}
+p{
+    overflow-y: scroll;
+    background-color: lightpink;
+    height: 100px;
+}
+
 
