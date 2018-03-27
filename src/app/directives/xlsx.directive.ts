@@ -15,6 +15,7 @@ export class XLSXDirective{
   @HostListener('change')
   public onChange(){
     var data = {};
+    var self = this;
 		/* wire up file reader */
 		const target:DataTransfer = (<DataTransfer>(this.el.nativeElement));
 		if(target.files.length != 1) throw new Error("Cannot upload multiple files on the entry");
@@ -24,10 +25,12 @@ export class XLSXDirective{
     wb.SheetNames.forEach((name) => {
             data[name.trim()] = XLSX.utils.sheet_to_json(wb.Sheets[name]);
           });
-    }
+    self.xlsxModel = data;
+    self.fileData.emit(self.xlsxModel);
+        }
     reader.readAsBinaryString(target.files[0]);
-    this.xlsxModel = data;
-    this.fileData.emit(this.xlsxModel);
+    // this.xlsxModel = data;
+    // this.fileData.emit(this.xlsxModel);
     //console.log(this.xlsxModel);
     //console.log(data);
     
