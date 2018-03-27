@@ -1,6 +1,4 @@
 import {Component, ViewChild, ElementRef} from '@angular/core';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import { SelectMonthYearPopUp } from '../modalPopUps/selectMonthYearPopUp';
 import { ReportColumnOptions } from '../../typings';
 import { DataTableComponent } from '../data-table/data-table.component';
 
@@ -20,7 +18,7 @@ export class ImportSectionComponent
     recievedFileData:any=[];
     showGrid: boolean = false;
 
-    constructor(public modalService:NgbModal){
+    constructor(){
 
     }
   
@@ -86,9 +84,5 @@ export class ImportSectionComponent
             }, 1000);
             
         }
-    }
-
-    OpenModal(){
-        const modRef= this.modalService.open(SelectMonthYearPopUp);
     }
 }
