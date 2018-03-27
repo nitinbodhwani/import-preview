@@ -44,7 +44,6 @@ export class ImportSectionComponent
     ImportDisplay(){
         // console.log(this.fnameCtrl.nativeElement.value);
         //document.getElementById('uploadBotton').attributes.removeNamedItem('disabled');
-        console.log(this.recievedFileData);
         console.log(this.recievedFileData.Sheet1[0]);
     }
 
