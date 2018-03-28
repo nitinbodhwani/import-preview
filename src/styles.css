@@ -158,7 +158,7 @@ li a:hover:not(.active) {
 }
 
 .dataGridContainer{
-    height: 580px;
+    height: 500px;
     width: auto;
     top:20px;
     /* padding-top:50px; */
