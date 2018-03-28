@@ -116,8 +116,9 @@ li a:hover:not(.active) {
     height: 80%;
     min-height: 965px;
     padding-top: 20px;
+    padding-left:40px;
     color: #868e96;
-    text-align: center;
+    /* text-align: center; */
     position: fixed;
     z-index: 999;
 }
