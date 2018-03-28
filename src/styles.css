@@ -159,4 +159,9 @@ li a:hover:not(.active) {
     padding-top: 15px;
 }
 
+.reportSubmit{
+    margin-top: 50px; 
+    margin-left: 50%;
+}
+
 

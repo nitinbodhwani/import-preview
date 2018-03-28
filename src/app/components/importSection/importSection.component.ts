@@ -1,6 +1,10 @@
 import {Component, ViewChild, ElementRef} from '@angular/core';
-import { ReportColumnOptions } from '../../typings';
+import { ReportColumnOptions, IReportDataModel, IReportModel } from '../../typings';
 import { DataTableComponent } from '../data-table/data-table.component';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { RequestOptions} from '@angular/http';
+import { ReportModel } from '../../models/ReportModel';
+import { ReportDataModel } from '../../models/ReportDataModel';
 
 @Component({
     selector:'import-section-comp',
@@ -17,8 +21,9 @@ export class ImportSectionComponent
     FileName:string;
     recievedFileData:any=[];
     showGrid: boolean = false;
+    allowReportSubmit: boolean = false;
 
-    constructor(){
+    constructor(private http: HttpClient){
 
     }
   
@@ -40,8 +45,6 @@ export class ImportSectionComponent
       reportData = [];
     
     ImportDisplay(){
-        // console.log(this.fnameCtrl.nativeElement.value);
-        //document.getElementById('uploadBotton').attributes.removeNamedItem('disabled');
         console.log(this.recievedFileData.Sheet1[0]);
     }
 
@@ -81,8 +84,68 @@ export class ImportSectionComponent
                 this.dtChild.columns = this.reportColumnOptions;
                 this.dtChild.rows = this.recievedFileData.Sheet1;
                 this.dtChild.onDataChange();
+                this.allowReportSubmit = true;
             }, 1000);
             
         }
     }
+
+    onReportSubmit(){
+        var consolidatedReportData = this.consolidateReportData();
+        var headers = new HttpHeaders();
+        headers.append('Content-Type', 'application/json');
+        this.http.post<ReportModel>('http://localhost/Attendance/api/report/submit', consolidatedReportData, {headers : headers}).toPromise().then(this.onSuccessfulReportSubmit).catch(this.onReportSubmitError);
+    }
+
+    onSuccessfulReportSubmit(submitReponse){
+        if(submitReponse){
+            this.allowReportSubmit = false;
+            console.log("Report Submitted Successfully");
+        }else{
+            console.log("Report Submit Failed");
+        }
+    }
+
+    onReportSubmitError(error){
+        this.allowReportSubmit = true;
+        console.log(error);
+    }
+
+    consolidateReportData() : ReportModel{
+        var consolidatedReportData : ReportModel = new ReportModel() ;
+
+        consolidatedReportData.ReportId = 0;
+        consolidatedReportData.Name = this.FileName;
+        consolidatedReportData.Month = 0;
+        consolidatedReportData.Year = 0;
+        consolidatedReportData.ImportDate = new Date();
+        consolidatedReportData.ReportDataList = new Array<ReportDataModel>();
+
+        this.recievedFileData.Sheet1.forEach(element => {
+            let reportDataItem : ReportDataModel = new ReportDataModel();
+            reportDataItem.ReportDataId = 0;
+            reportDataItem.ReportId = 0;
+            reportDataItem.Node = element["Node"];
+            reportDataItem.Panel = element["Panel"];
+            reportDataItem.Event = element["Event"];
+            reportDataItem.EventDateTime =  element["Event Date/Time"];
+            reportDataItem.CardNumber =  element["Card No"];
+            reportDataItem.CardName =  element["Card Name"];
+            reportDataItem.Location =  element["Location"];
+            reportDataItem.ReaderId =  element["Rdr"];
+            reportDataItem.In =  element["In"];
+            reportDataItem.Out =  element["Out"];
+            reportDataItem.Affiliation =  element["Affiliation"];
+            reportDataItem.AlarmText =  element["Alarm Text"];
+            
+            consolidatedReportData.ReportDataList.push(reportDataItem);
+
+        });
+
+        return consolidatedReportData;
+    }
+}
+
+export class Test{
+    number: number;
 }

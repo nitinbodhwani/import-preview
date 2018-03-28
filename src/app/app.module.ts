@@ -8,7 +8,7 @@ import {XLSXDirective} from './directives/xlsx.directive';
 import { DataTableComponent } from './components/data-table/data-table.component';
 import { NgTableComponent, NgTableFilteringDirective, NgTablePagingDirective, NgTableSortingDirective, Ng2TableModule } from 'ng2-table';
 import {ImportTemplateComponent} from './components/importTemplate/importTemplate.component';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,8 @@ import {ImportTemplateComponent} from './components/importTemplate/importTemplat
     BrowserModule,
     FormsModule,
     //NgbModule.forRoot(),
-    Ng2TableModule
+    Ng2TableModule,
+    HttpClientModule
   ],
   providers: [],
 
