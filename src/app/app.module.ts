@@ -11,6 +11,9 @@ import { DataTableComponent } from './components/data-table/data-table.component
 import {ImportTemplateComponent} from './components/importTemplate/importTemplate.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReportPreviewComponent } from './components/reportPreview/reportPreview.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ToastModule, ToastOptions} from 'ng2-toastr/ng2-toastr';
+import { CustomToastOption } from './custom-toast-options';
 
 @NgModule({
   declarations: [
@@ -29,9 +32,13 @@ import { ReportPreviewComponent } from './components/reportPreview/reportPreview
     //NgbModule.forRoot(),
     Ng2TableModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    ToastModule.forRoot()
   ],
-  providers: [],
+  providers: [
+//{provide: ToastOptions, useClass: CustomToastOption}
+  ],
 
   bootstrap: [AppComponent]
   //bootstrap: [ImportReportComponent]

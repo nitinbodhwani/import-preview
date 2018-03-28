@@ -1,10 +1,11 @@
-import {Component, ViewChild, ElementRef} from '@angular/core';
+import {Component, ViewChild, ElementRef, ViewContainerRef, Input} from '@angular/core';
 import { ReportColumnOptions, IReportDataModel, IReportModel } from '../../typings';
 import { DataTableComponent } from '../data-table/data-table.component';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { RequestOptions} from '@angular/http';
 import { ReportModel } from '../../models/ReportModel';
 import { ReportDataModel } from '../../models/ReportDataModel';
+import { ToastsManager } from 'ng2-toastr';
 
 @Component({
     selector:'import-section-comp',
@@ -16,6 +17,7 @@ export class ImportSectionComponent
 
     @ViewChild('fileName') fnameCtrl:any;
     @ViewChild(DataTableComponent) dtChild : DataTableComponent;
+    @Input() _toast : ToastsManager;
 
     inputButtonSeen:boolean=false;
     FileName:string;
@@ -23,7 +25,9 @@ export class ImportSectionComponent
     showGrid: boolean = false;
     allowReportSubmit: boolean = false;
 
-    constructor(private http: HttpClient){
+   
+
+    constructor(private http: HttpClient, public toastr: ToastsManager){
 
     }
   
@@ -94,20 +98,23 @@ export class ImportSectionComponent
         var consolidatedReportData = this.consolidateReportData();
         var headers = new HttpHeaders();
         headers.append('Content-Type', 'application/json');
-        this.http.post<ReportModel>('http://localhost/Attendance/api/report/submit', consolidatedReportData, {headers : headers}).toPromise().then(this.onSuccessfulReportSubmit).catch(this.onReportSubmitError);
+        this.http.post<ReportModel>('http://localhost/Attendance/api/report/submit', consolidatedReportData, {headers : headers}).toPromise().then(this.onSuccessfulReportSubmit.bind(null, this)).catch(this.onReportSubmitError.bind(null, this));
     }
 
-    onSuccessfulReportSubmit(submitReponse){
+    onSuccessfulReportSubmit(self, submitReponse){
         if(submitReponse){
-            this.allowReportSubmit = false;
+            self.allowReportSubmit = false;
+            self.toastr.success("Report saved Successfully", null,{titleClass:"SUCCESS"});
             console.log("Report Submitted Successfully");
         }else{
+            self.toastr.error("Failed: Report submit");
             console.log("Report Submit Failed");
         }
     }
 
-    onReportSubmitError(error){
-        this.allowReportSubmit = true;
+    onReportSubmitError(self, error){
+        self.allowReportSubmit = true;
+        self.toastr.error("Failed: Report submit");
         console.log(error);
     }
 
@@ -144,8 +151,4 @@ export class ImportSectionComponent
 
         return consolidatedReportData;
     }
-}
-
-export class Test{
-    number: number;
 }

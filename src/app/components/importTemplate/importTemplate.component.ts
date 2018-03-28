@@ -7,5 +7,4 @@ import { templateJitUrl } from '@angular/compiler';
 })
 
 export class ImportTemplateComponent{
-
 }
