@@ -40,7 +40,7 @@ import { CustomToastOption } from './custom-toast-options';
     ToastModule.forRoot()
   ],
   providers: [
-//{provide: ToastOptions, useClass: CustomToastOption}
+  {provide: ToastOptions, useClass: CustomToastOption}
   ],
 
   bootstrap: [AppComponent]
