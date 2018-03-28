@@ -22,6 +22,9 @@
             <span id="noDataSpanEle" *ngIf="!showGrid"><i>No Data to show, select a file</i></span>
             <data-table *ngIf="showGrid"></data-table>
         </div>
+        <div class="reportSubmit" *ngIf="allowReportSubmit">
+            <button class="btn btn-primary" (click)="onReportSubmit()">Submit</button>
+        </div>
     </div>
 </div>
         <!-- <div class="well">

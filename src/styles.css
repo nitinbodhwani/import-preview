@@ -174,6 +174,7 @@ li a:hover:not(.active) {
     padding-top: 15px;
 }
 
+
 .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
     background-color:#E0E0E0;
     color: black;
@@ -194,6 +195,10 @@ li a:hover:not(.active) {
 
 .tabContainer{
     padding-top: 10px;
+}
+.reportSubmit{
+    margin-top: 50px; 
+    margin-left: 50%;
 }
 
 
