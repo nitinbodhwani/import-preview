@@ -1,22 +1,25 @@
 <div>
     <div class="mainImportDiv">
-        <div>
+        <div class="form-group fileSelectContainer">
             <input type="file" id="hideFileInputButton" #fileName [hidden]="true" xlsx [xlsxModel]="data" multiple="false" (fileData)="DataRecieved($event)">
             <table>
                 <tr>
                     <td>
-                        <input type="text" [(ngModel)]="FileName" disabled placeholder="selected file is...">
-                    </td>
-                    <td>
                         <button class="btn btn-primary" (click)="SelectFile()">Select File</button>
                     </td>
+                    <td>
+                        <input type="text" class="form-control" [(ngModel)]="FileName" disabled placeholder="selected file is...">
+                    </td>
+                    <!-- <td>
+                        <button class="btn btn-primary" (click)="SelectFile()">Select File</button>
+                    </td> -->
                     <!-- <td><button class="btn btn-primary" id="uploadBotton" (click)="OpenModal()">Upload</button></td> -->
                 </tr>
             </table>
         </div>
         <!-- <data-table [columns] = "reportColumnOptions" [rows] = "recievedFileData.Sheet1" #dtCtrl></data-table> -->
         <div>
-            <span *ngIf="!showGrid">No Data to show</span>
+            <span id="noDataSpanEle" *ngIf="!showGrid"><i>No Data to show, select a file</i></span>
             <data-table *ngIf="showGrid"></data-table>
         </div>
     </div>

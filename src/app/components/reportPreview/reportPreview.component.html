@@ -1,1 +1,27 @@
-<div><h1>Report Preview Page</h1></div>
+<div>
+    <ngb-tabset [justify]="currentJustify">
+            <ngb-tab>
+                <ng-template ngbTabTitle><b>Record by Card Number</b></ng-template>
+                <ng-template ngbTabContent>
+                    <div class="tabContainer">
+                        <div class=" row form-group">
+                            <div class="col col-sm-3"><input type="text" class="form-control"/></div>
+                            <div><button class="btn btn-primary">Search</button></div>
+                        </div>
+                    </div>
+                </ng-template>
+            </ngb-tab>
+
+            <ngb-tab>
+                <ng-template ngbTabTitle><b>Record by month</b></ng-template>
+                <ng-template ngbTabContent>
+                    <div class="tabContainer">
+                        <div class=" row form-group">
+                            <div class="col col-sm-3"><input type="text" class="form-control"/></div>
+                             <div><button class="btn btn-primary">Search</button></div>
+                        </div>
+                    </div>
+                </ng-template>
+                </ngb-tab>
+    </ngb-tabset>
+</div>

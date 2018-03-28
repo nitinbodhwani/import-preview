@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './/app-routing.module';
 import { NgTableComponent, NgTableFilteringDirective, NgTablePagingDirective, NgTableSortingDirective, Ng2TableModule } from 'ng2-table';
+import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { MainPanelComponent } from './components/mainPanel/mainPanel.component';
@@ -27,7 +28,7 @@ import { ReportPreviewComponent } from './components/reportPreview/reportPreview
   imports: [
     BrowserModule,
     FormsModule,
-    //NgbModule.forRoot(),
+    NgbModule.forRoot(),
     Ng2TableModule,
     AppRoutingModule
   ],
