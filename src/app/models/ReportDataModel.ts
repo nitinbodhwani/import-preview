@@ -4,7 +4,7 @@ export class ReportDataModel{
     Node: string;
     Panel: string;
     Event: string;
-    EventDateTime: string;
+    EventDateTime: Date;
     CardNumber: number;
     CardName: string;
     Location: string;

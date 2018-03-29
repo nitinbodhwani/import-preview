@@ -24,11 +24,9 @@ export class ImportSectionComponent
     recievedFileData:any=[];
     showGrid: boolean = false;
     allowReportSubmit: boolean = false;
-
    
 
     constructor(private http: HttpClient, public toastr: ToastsManager){
-
     }
   
     reportColumnOptions:Array<ReportColumnOptions> = [
@@ -118,13 +116,18 @@ export class ImportSectionComponent
         console.log(error);
     }
 
+    parseDate(input) {
+        var parts = input.match(/(\d+)/g);
+        // note parts[1]-1
+        return new Date(Date.UTC(parts[2], parts[1]-1, parts[0], parts[3], parts[4], parts[5]));
+      }
+      
+     // parseDate('31.05.2010');
     consolidateReportData() : ReportModel{
         var consolidatedReportData : ReportModel = new ReportModel() ;
 
         consolidatedReportData.ReportId = 0;
         consolidatedReportData.Name = this.FileName;
-        consolidatedReportData.Month = 0;
-        consolidatedReportData.Year = 0;
         consolidatedReportData.ImportDate = new Date();
         consolidatedReportData.ReportDataList = new Array<ReportDataModel>();
 
@@ -135,7 +138,8 @@ export class ImportSectionComponent
             reportDataItem.Node = element["Node"];
             reportDataItem.Panel = element["Panel"];
             reportDataItem.Event = element["Event"];
-            reportDataItem.EventDateTime =  element["Event Date/Time"];
+            //reportDataItem.EventDateTime = new Date(element["Event Date/Time"]).toDateString();
+            reportDataItem.EventDateTime = this.parseDate(element["Event Date/Time"]);
             reportDataItem.CardNumber =  element["Card No"];
             reportDataItem.CardName =  element["Card Name"];
             reportDataItem.Location =  element["Location"];

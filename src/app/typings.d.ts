@@ -48,8 +48,6 @@ export interface IReportDataModel{
 export interface IReportModel{
     ReportId : number,
     Name : string,
-    Month : number,
-    Year : number,
     ImportDate : string,
     ReportDataList : Array<IReportDataModel>
 }
