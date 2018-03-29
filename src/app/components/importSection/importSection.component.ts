@@ -31,7 +31,7 @@ export class ImportSectionComponent
     reportColumnOptions:Array<IReportColumnOptions> = [
         {title: 'Node', name: 'Node'},
         {title: 'Panel', name: 'Panel', sort: ''},
-        {title: 'Event.', name: 'Event', sort: ''},
+        {title: 'Event', name: 'Event', sort: ''},
         {title: 'Event Date/Time', name: 'Event Date/Time'},
         {title: 'Card No.', name: 'Card No', filtering: {filterString: '', placeholder: 'Filter by Card Number'}, sort: 'asc'},
         {title: 'Card Name', name: 'Card Name', filtering: {filterString: '', placeholder: 'Filter by Card Name'}},

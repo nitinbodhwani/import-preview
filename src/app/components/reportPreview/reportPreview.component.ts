@@ -77,6 +77,12 @@ export class ReportPreviewComponent implements OnInit {
                 });
 
                 reportData.forEach(element => {
+
+                    if(element["EventDate"]){
+                        // Conversion to exclude time portion from the field value
+                        element["EventDate"] = new Date(element["EventDate"]).toDateString();
+                    }
+
                     if(element["CardNumber"]){
                         // Converting Card Number field value into string as filtering in "ng2-table" works only for string values not the number
                         element["CardNumber"] = element["CardNumber"].toString();
