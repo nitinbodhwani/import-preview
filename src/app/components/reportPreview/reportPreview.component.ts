@@ -1,9 +1,11 @@
-import {Component, ViewChildren, QueryList, ViewChild, ElementRef} from '@angular/core';
+
+import {Component, ViewChildren, QueryList, ViewChild, ElementRef, OnInit} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastsManager } from 'ng2-toastr';
 import { IReportColumnOptions } from '../../typings';
 import { DataTableComponent } from '../data-table/data-table.component';
- 
+import { Http, Response } from '@angular/http'; 
+import 'rxjs/add/operator/map';
 
 
 @Component({
@@ -11,10 +13,11 @@ import { DataTableComponent } from '../data-table/data-table.component';
     templateUrl:'./reportPreview.component.html'
 })
 
-export class ReportPreviewComponent{
+export class ReportPreviewComponent implements OnInit {
     currentJustify = 'justified';
     selectedByDate: any;
     selectedByCard: any;
+
     showGridByCard: boolean = false;
     showGridByDate: boolean = false;
     @ViewChildren(DataTableComponent) dataTables: QueryList<DataTableComponent>;
@@ -43,7 +46,6 @@ export class ReportPreviewComponent{
       ];
 
     constructor(private http: HttpClient, public toastr: ToastsManager){
-        //this.tab1Ref.nativeElement.click
     }
 
     getReportByDate(){
@@ -96,7 +98,36 @@ export class ReportPreviewComponent{
         self.showGridByCard = false;
     }
 
-    onChangeOfSelectedDate(){
-        //this.btnSearchByDateRef.nativeElement.attributes.remove('disabled');
+    monthArray:string[]=[
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+    ];
+    selectedMonth:string="January"; 
+    minYear:number;   
+    maxYear:number;        
+
+
+    ngOnInit(){
+        // this.http.get('/assets/config.json')
+        // .map(data => data.json())
+        // .subscribe(data=>{
+        //     this.minYear=data.startYear;
+        //     this.maxYear=data.maxYear;
+        //     console.log(this.minYear);
+        // })
+    }
+
+    SearchByCard(){
+        console.log(this.selectedMonth);
     }
 }

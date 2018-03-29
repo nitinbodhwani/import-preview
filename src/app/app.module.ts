@@ -5,17 +5,18 @@ import { AppRoutingModule } from './/app-routing.module';
 import { NgTableComponent, NgTableFilteringDirective, NgTablePagingDirective, NgTableSortingDirective, Ng2TableModule } from 'ng2-table';
 
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { MainPanelComponent } from './components/mainPanel/mainPanel.component';
 import { ImportSectionComponent } from './components/importSection/importSection.component';
 import { XLSXDirective } from './directives/xlsx.directive';
 import { DataTableComponent } from './components/data-table/data-table.component';
-import {ImportTemplateComponent} from './components/importTemplate/importTemplate.component';
+import { ImportTemplateComponent } from './components/importTemplate/importTemplate.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReportPreviewComponent } from './components/reportPreview/reportPreview.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {ToastModule, ToastOptions} from 'ng2-toastr/ng2-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastModule, ToastOptions } from 'ng2-toastr/ng2-toastr';
 import { CustomToastOption } from './custom-toast-options';
 
 @NgModule({
@@ -37,7 +38,8 @@ import { CustomToastOption } from './custom-toast-options';
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ToastModule.forRoot()
+    ToastModule.forRoot(),
+    HttpModule
   ],
   providers: [
   {provide: ToastOptions, useClass: CustomToastOption}
