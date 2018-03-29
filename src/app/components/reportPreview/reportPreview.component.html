@@ -1,10 +1,10 @@
 <div>
     <ngb-tabset [justify]="currentJustify">
-            <ngb-tab>
+            <ngb-tab #tab1>
                 <ng-template ngbTabTitle><b>Report by Card Number</b></ng-template>
                 <ng-template ngbTabContent>
                     <div class="tabContainer">
-                        <div class=" row form-group">
+                        <div class="row form-group">
                             <div class="col col-sm-3">
                                 <label><b>Card Number</b></label>
                                 <input type="number" class="form-control">
@@ -23,19 +23,25 @@
                             </div>
                             <div  style="padding-top:2.1%;"><button class="btn btn-info">Search</button></div>
                         </div>
+                        <div>
+                            <data-table *ngIf="showGridByCard" id="gridByCard"></data-table>
+                        </div>
                     </div>
                 </ng-template>
             </ngb-tab>
 
-            <ngb-tab>
+            <ngb-tab #tab2>
                 <ng-template ngbTabTitle><b>Report by Date</b></ng-template>
                 <ng-template ngbTabContent>
                     <div class="tabContainer">
                         <div class=" row form-group">
                             <div class="col col-sm-3">
-                                <input class="form-control" placeholder="yyyy-mm-dd" [(ngModel)]="selectedByDate" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+                                <input class="form-control" placeholder="yyyy-mm-dd" [(ngModel)]="selectedByDate" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle(); onChangeOfSelectedDate()">
                             </div>
-                             <div><button class="btn btn-info">Search</button></div>
+                             <div><button class="btn btn-info" (click) = "getReportByDate()" #btnSearchByDate>Search</button></div>
+                        </div>
+                        <div>
+                            <data-table *ngIf="showGridByDate" id="gridByDate"></data-table>
                         </div>
                     </div>
                 </ng-template>

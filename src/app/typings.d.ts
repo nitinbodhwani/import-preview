@@ -3,7 +3,7 @@ export interface FilterOptions{
     placeholder: string
 }
 
-export interface ReportColumnOptions{
+export interface IReportColumnOptions{
     title: string,
     name: string,
     filtering?: FilterOptions,

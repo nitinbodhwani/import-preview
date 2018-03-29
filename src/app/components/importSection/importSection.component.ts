@@ -1,5 +1,5 @@
 import {Component, ViewChild, ElementRef, ViewContainerRef, Input} from '@angular/core';
-import { ReportColumnOptions, IReportDataModel, IReportModel } from '../../typings';
+import { IReportColumnOptions, IReportDataModel, IReportModel } from '../../typings';
 import { DataTableComponent } from '../data-table/data-table.component';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { RequestOptions} from '@angular/http';
@@ -17,7 +17,6 @@ export class ImportSectionComponent
 
     @ViewChild('fileName') fnameCtrl:any;
     @ViewChild(DataTableComponent) dtChild : DataTableComponent;
-    @Input() _toast : ToastsManager;
 
     inputButtonSeen:boolean=false;
     FileName:string;
@@ -29,7 +28,7 @@ export class ImportSectionComponent
     constructor(private http: HttpClient, public toastr: ToastsManager){
     }
   
-    reportColumnOptions:Array<ReportColumnOptions> = [
+    reportColumnOptions:Array<IReportColumnOptions> = [
         {title: 'Node', name: 'Node'},
         {title: 'Panel', name: 'Panel', sort: ''},
         {title: 'Event.', name: 'Event', sort: ''},
@@ -43,8 +42,6 @@ export class ImportSectionComponent
         {title: 'Affiliation', name: 'Affiliation'},
         {title: 'Alarm Text', name: 'Alarm Text'}        
       ];
-
-      reportData = [];
     
     ImportDisplay(){
         console.log(this.recievedFileData.Sheet1[0]);
