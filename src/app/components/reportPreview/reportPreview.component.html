@@ -19,7 +19,7 @@
                             </div> -->
                              <div class="col col-sm-3">
                                  <label><b>Month and Year</b></label>
-                                <input class="form-control" placeholder="yyyy-mm-dd" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+                                <input class="form-control" placeholder="yyyy-mm-dd" [(ngModel)]="selectedByCard" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
                             </div>
                             <div  style="padding-top:2.1%;"><button class="btn btn-info">Search</button></div>
                         </div>
@@ -33,7 +33,7 @@
                     <div class="tabContainer">
                         <div class=" row form-group">
                             <div class="col col-sm-3">
-                                <input class="form-control" placeholder="yyyy-mm-dd" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+                                <input class="form-control" placeholder="yyyy-mm-dd" [(ngModel)]="selectedByDate" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
                             </div>
                              <div><button class="btn btn-info">Search</button></div>
                         </div>
