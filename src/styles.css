@@ -195,6 +195,7 @@ li a:hover:not(.active) {
 
 .tabContainer{
     padding-top: 10px;
+    padding-left: 1%;
 }
 .reportSubmit{
     margin-top: 50px; 

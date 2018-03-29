@@ -5,6 +5,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { NgTableComponent, NgTableFilteringDirective, NgTablePagingDirective, NgTableSortingDirective, Ng2TableModule } from 'ng2-table';
 
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgDatepickerModule } from 'ng2-datepicker';
 
 import { AppComponent } from './app.component';
 import { MainPanelComponent } from './components/mainPanel/mainPanel.component';
@@ -37,7 +38,8 @@ import { CustomToastOption } from './custom-toast-options';
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ToastModule.forRoot()
+    ToastModule.forRoot(),
+    NgDatepickerModule
   ],
   providers: [
   {provide: ToastOptions, useClass: CustomToastOption}

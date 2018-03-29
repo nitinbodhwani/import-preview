@@ -5,8 +5,23 @@
                 <ng-template ngbTabContent>
                     <div class="tabContainer">
                         <div class=" row form-group">
-                            <div class="col col-sm-3"><input type="text" class="form-control"/></div>
-                            <div><button class="btn btn-primary">Search</button></div>
+                            <div class="col col-sm-3">
+                                <label><b>Card Number</b></label>
+                                <input type="number" class="form-control">
+                            </div>
+                            <!-- <div class="col col-sm-3">
+                                <label><b>Month</b></label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="col col-sm-3">
+                                <label><b>Year</b></label>
+                                <input type="text" class="form-control">
+                            </div> -->
+                             <div class="col col-sm-3">
+                                 <label><b>Month and Year</b></label>
+                                <input class="form-control" placeholder="yyyy-mm-dd" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+                            </div>
+                            <div  style="padding-top:2.1%;"><button class="btn btn-info">Search</button></div>
                         </div>
                     </div>
                 </ng-template>
@@ -17,8 +32,10 @@
                 <ng-template ngbTabContent>
                     <div class="tabContainer">
                         <div class=" row form-group">
-                            <div class="col col-sm-3"><input type="text" class="form-control"/></div>
-                             <div><button class="btn btn-primary">Search</button></div>
+                            <div class="col col-sm-3">
+                                <input class="form-control" placeholder="yyyy-mm-dd" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+                            </div>
+                             <div><button class="btn btn-info">Search</button></div>
                         </div>
                     </div>
                 </ng-template>
