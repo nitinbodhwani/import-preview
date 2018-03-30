@@ -18,7 +18,9 @@
                             </div>
                             <div class="col col-sm-3">
                                 <label><b>Year</b></label>
-                                <input type="text" class="form-control">
+                                <select class="form-control" [(ngModel)]="selectedYear">
+                                    <option *ngFor="let year of years" [value]="year"><div>{{year}}</div></option>
+                                </select>
                             </div>
                              <!-- <div class="col col-sm-3">
                                  <label><b>Month and Year</b></label>
@@ -38,7 +40,7 @@
                             <div class="col col-sm-3">
                                 <input class="form-control" placeholder="yyyy-mm-dd" [(ngModel)]="selectedByDate" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
                             </div>
-                             <div><button class="btn btn-info">Search</button></div>
+                             <div><button class="btn btn-info" (click)="SearchByDate()">Search</button></div>
                         </div>
                     </div>
                 </ng-template>
