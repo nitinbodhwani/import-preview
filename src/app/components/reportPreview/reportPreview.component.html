@@ -1,46 +1,100 @@
 <div>
-    <ngb-tabset [justify]="currentJustify">
-            <ngb-tab>
+    <ngb-tabset [justify]="currentJustify" class="tabsetContainer">
+            <ngb-tab #tab1>
                 <ng-template ngbTabTitle><b>Report by Card Number</b></ng-template>
                 <ng-template ngbTabContent>
                     <div class="tabContainer">
-                        <div class=" row form-group">
-                            <div class="col col-sm-3">
-                                <label><b>Card Number</b></label>
-                                <input type="number" class="form-control">
+                        <div>
+                            <div class="row form-group">
+                                <div class="col col-sm-3">
+                                    <input type="text" class="form-control" placeholder="--Card Name/Code(Optional)--">
+                                </div>
+                                <div class="col col-sm-3">
+                                    <select class="form-control" [(ngModel)]="selectedMonth">
+                                        <option disabled>--Month--</option>
+                                        <option *ngFor="let month of monthArray" [value]="month">{{month}}</option>
+                                    </select>
+                                </div>
+                                <div class="col col-sm-3">
+                                    <select class="form-control" [(ngModel)]="selectedYear">
+                                        <option disabled>--Year--</option>
+                                        <option *ngFor="let year of years" [value]="year">
+                                            <div>{{year}}</div>
+                                        </option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <button class="btn btn-info" (click)="SearchByCard()">Search</button>
+                                </div>
                             </div>
-                            <div class="col col-sm-3">
-                                <label><b>Month</b></label>
-                                <!-- <input type="text" class="form-control"> -->
-                                <select class="form-control" [(ngModel)]="selectedMonth">
-                                    <option *ngFor="let month of monthArray" [value]="month">{{month}}</option>
-                                </select>
+                            <div>
+                                <data-table *ngIf="showGridByCard" id="gridByCard"></data-table>
                             </div>
-                            <div class="col col-sm-3">
-                                <label><b>Year</b></label>
-                                <select class="form-control" [(ngModel)]="selectedYear">
-                                    <option *ngFor="let year of years" [value]="year"><div>{{year}}</div></option>
-                                </select>
+                        </div>
+                        <div>
+                            <div class="card">
+                                <div class="card-header" style="padding-bottom:0px;line-height:0.2;">
+                                    <div class="row" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+                                        <div>
+                                            <p *ngIf="isCollapsed">
+                                                <i class="fa fa-chevron-down" style="padding-right:10px;"></i>gfdsutsfcyd
+                                            </p>
+                                            <p *ngIf="!isCollapsed">
+                                                <i class="fa fa-chevron-right" style="padding-right:10px;"></i>gfdsutsfcyd
+                                            </p>
+                                        </div>
+                                    </div>
+                            
+                                </div>
+                                <div id="collapseExample" [ngbCollapse]="isCollapsed">
+                                    <div>
+                                        <div class="card-body">
+                                            You can collapse this card by clicking Toggle
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                             <!-- <div class="col col-sm-3">
-                                 <label><b>Month and Year</b></label>
-                                <input class="form-control" placeholder="yyyy-mm-dd" [(ngModel)]="selectedByCard" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
-                            </div> -->
-                            <div  style="padding-top:2.1%;"><button class="btn btn-info" (click)="SearchByCard()">Search</button></div>
+                            <div class="card">
+                                    <div class="card-header" style="padding-bottom:0px;line-height:0.2;">
+                                        <div class="row" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+                                            <div>
+                                                <p *ngIf="isCollapsed">
+                                                    <i class="fa fa-chevron-down" style="padding-right:10px;"></i>gfdsutsfcyd
+                                                </p>
+                                                <p *ngIf="!isCollapsed">
+                                                    <i class="fa fa-chevron-right" style="padding-right:10px;"></i>gfdsutsfcyd
+                                                </p>
+                                            </div>
+                                        </div>
+                                
+                                    </div>
+                                    <div id="collapseExample" [ngbCollapse]="isCollapsed">
+                                        <div>
+                                            <div class="card-body">
+                                                You can collapse this card by clicking Toggle
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                         </div>
                     </div>
                 </ng-template>
             </ngb-tab>
 
-            <ngb-tab>
+            <ngb-tab #tab2>
                 <ng-template ngbTabTitle><b>Report by Date</b></ng-template>
                 <ng-template ngbTabContent>
                     <div class="tabContainer">
                         <div class=" row form-group">
                             <div class="col col-sm-3">
-                                <input class="form-control" placeholder="yyyy-mm-dd" [(ngModel)]="selectedByDate" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+                                <input class="form-control" placeholder="yyyy-mm-dd" [(ngModel)]="selectedByDate" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle(); onChangeOfSelectedDate()">
                             </div>
-                             <div><button class="btn btn-info" (click)="SearchByDate()">Search</button></div>
+                            <div>
+                                <button class="btn btn-info" (click)="getReportByDate()" #btnSearchByDate>Search</button>
+                            </div>
+                        </div>
+                        <div>
+                            <data-table *ngIf="showGridByDate" id="gridByDate"></data-table>
                         </div>
                     </div>
                 </ng-template>

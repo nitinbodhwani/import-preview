@@ -5,7 +5,7 @@
             <table>
                 <tr>
                     <td>
-                        <button class="btn btn-primary" (click)="SelectFile()">Select File</button>
+                        <button class="btn btn-info" (click)="SelectFile()">Select File</button>
                     </td>
                     <td>
                         <input type="text" class="form-control" [(ngModel)]="FileName" disabled placeholder="selected file is...">
@@ -23,33 +23,7 @@
             <data-table *ngIf="showGrid"></data-table>
         </div>
         <div class="reportSubmit" *ngIf="allowReportSubmit">
-            <button class="btn btn-primary" (click)="onReportSubmit()">Submit</button>
+            <button class="btn btn-info" (click)="onReportSubmit()">Submit</button>
         </div>
     </div>
 </div>
-        <!-- <div class="well">
-            <table class="table table-responsive">
-                <tr>
-                    <th>Node</th>
-                    <th>Panel</th>
-                    <th>Event</th>
-                    <th>Event Date/Time</th>
-                    <th>Card No</th>
-                    <th>Card Name</th>
-                    <th>Location</th>
-                    <th>Rdr</th>
-                    <th>Affiliation</th>
-                </tr>
-                <tr *ngFor="let item of recievedFileData.Sheet1">
-                    <td>{{item["Node"]}}</td>
-                    <td>{{item["Panel"]}}</td>
-                    <td>{{item["Event"]}}</td>
-                    <td>{{item["Event Date/Time"]}}</td>
-                    <td>{{item["Card No."]}}</td>
-                    <td>{{item["Card Name"]}}</td>
-                    <td>{{item["Location"]}}</td>
-                    <td>{{item["Rdr"]}}</td>
-                    <td>{{item["Affiliation"]}}</td>
-                </tr>
-            </table>
-        </div> -->
