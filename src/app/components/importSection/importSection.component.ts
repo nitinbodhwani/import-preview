@@ -145,7 +145,6 @@ export class ImportSectionComponent
             reportDataItem.Out =  element["Out"];
             reportDataItem.Affiliation =  element["Affiliation"];
             reportDataItem.AlarmText =  element["Alarm Text"];
-            
             consolidatedReportData.ReportDataList.push(reportDataItem);
 
         });

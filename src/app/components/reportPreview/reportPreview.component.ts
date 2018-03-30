@@ -37,8 +37,8 @@ export class ReportPreviewComponent implements OnInit {
 
       reportColumnOptionsForByDateGrid:Array<IReportColumnOptions> = [
         {title: 'Event Date', name: 'EventDate'},
-        {title: 'Card Number', name: 'CardNumber', filtering: {filterString: '', placeholder: 'Filter by Card Number'}},
-        {title: 'Card Name', name: 'CardName', filtering: {filterString: '', placeholder: 'Filter by Card Name'}},
+        {title: 'Employee Name', name: 'EmployeeName', filtering: {filterString: '', placeholder: 'Filter by Employee Name'}},
+        {title: 'Employee Code', name: 'EmployeeCode', filtering: {filterString: '', placeholder: 'Filter by Employee Code'}},
         {title: 'Location', name: 'Location'},
         {title: 'In Time', name: 'InTime'},
         {title: 'Out Time', name: 'OutTime'},
@@ -83,10 +83,10 @@ export class ReportPreviewComponent implements OnInit {
                         element["EventDate"] = new Date(element["EventDate"]).toDateString();
                     }
 
-                    if(element["CardNumber"]){
-                        // Converting Card Number field value into string as filtering in "ng2-table" works only for string values not the number
-                        element["CardNumber"] = element["CardNumber"].toString();
-                    }
+                    // if(element["CardNumber"]){
+                    //     // Converting Card Number field value into string as filtering in "ng2-table" works only for string values not the number
+                    //     element["CardNumber"] = element["CardNumber"].toString();
+                    // }
                 });
 
                 inProcessDataTable.columns = self.reportColumnOptionsForByDateGrid;
