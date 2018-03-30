@@ -16,7 +16,9 @@ import 'rxjs/add/operator/map';
 export class ReportPreviewComponent implements OnInit {
     currentJustify = 'justified';
     selectedByDate: any;
-    selectedByCard: any;
+    selectedMonthInReportByMonth: number;
+    selectedYearInReportByMonth: number;
+    filterValueInReportByMonth: string;
 
     showGridByCard: boolean = false;
     showGridByDate: boolean = false;
@@ -99,9 +101,61 @@ export class ReportPreviewComponent implements OnInit {
         }
     }
 
+    getReportByMonth(){
+        if(this.selectedByDate)
+        {
+            
+            var selectedDate = this.selectedByDate.day;
+            var selectedMonth = this.selectedByDate.month;
+            var selectedYear = this.selectedByDate.year;
+
+            var url = 'http://localhost/Attendance/api/report/aggregate?month=' + this.selectedMonthInReportByMonth + '&year=' + this.selectedYearInReportByMonth + '&filterValue=' + this.filterValueInReportByMonth;
+
+            var headers = new HttpHeaders();
+            headers.append('Content-Type', 'application/json');
+            //this.http.get('http://localhost/Attendance/api/report/date?day=1&month=12&year=2017', {headers : headers}).toPromise().then(this.onSuccessOfSearchByDate.bind(null, this)).catch(this.onReportGetFailure.bind(null, this));
+            this.http.get(url, {headers : headers}).toPromise().then(this.onSuccessOfSearchByMonth.bind(null, this)).catch(this.onReportGetFailure.bind(null, this));
+        }
+    }
+
+    onSuccessOfSearchByMonth(self, reportData){
+        if(reportData){
+            self.showGridByDate = true;
+            self.showGridByCard = false;
+
+            setTimeout(t => {
+
+                var inProcessDataTable : DataTableComponent = self.dataTables.find(function(dt){
+                    return dt.id == "gridByMonth"
+                });
+
+                reportData.forEach(element => {
+
+                    if(element["EventDate"]){
+                        // Conversion to exclude time portion from the field value
+                        element["EventDate"] = new Date(element["EventDate"]).toDateString();
+                    }
+
+                    // if(element["CardNumber"]){
+                    //     // Converting Card Number field value into string as filtering in "ng2-table" works only for string values not the number
+                    //     element["CardNumber"] = element["CardNumber"].toString();
+                    // }
+                });
+
+                inProcessDataTable.columns = self.reportColumnOptionsForByDateGrid;
+                inProcessDataTable.rows = reportData;
+                inProcessDataTable.onDataChange();
+            }, 1000);
+        }else{
+            self.showGridByDate = false;
+            self.toastr.error("Failed: Report Search by date");
+        }
+    }
+
     onReportGetFailure(self, error){
         self.showGridByDate = false;
         self.showGridByCard = false;
+        self.toastr.error("Failed: Report Search");
     }
 
     monthArray:string[]=[

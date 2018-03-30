@@ -51,3 +51,18 @@ export interface IReportModel{
     ImportDate : string,
     ReportDataList : Array<IReportDataModel>
 }
+
+export interface ISwipeInfo{
+    EventDate: Date;
+    Location: string;
+    InTime: string;
+    OutTime: string;
+    TotalHours: number;
+}
+
+export interface IEmployeeAttendance{
+    EmployeeName: string;
+    EmployeeCode: string;
+    AggregatedHours: number;
+    SwipeInfoCollection: Array<ISwipeInfo>;
+}
