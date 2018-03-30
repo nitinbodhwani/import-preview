@@ -32,6 +32,7 @@
                             </div>
                         </div>
                         <div>
+
                             <div class="card">
                                 <div class="card-header" style="padding-bottom:0px;line-height:0.2;">
                                     <div class="row" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
@@ -76,6 +77,9 @@
                                         </div>
                                     </div>
                                 </div>
+
+                            <data-table *ngIf="showGridByCard" id="gridByMonth"></data-table>
+
                         </div>
                     </div>
                 </ng-template>
