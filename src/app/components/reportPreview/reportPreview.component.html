@@ -1,13 +1,13 @@
 <div>
     <ngb-tabset [justify]="currentJustify" class="tabsetContainer">
             <ngb-tab #tab1>
-                <ng-template ngbTabTitle><b>Report by Card Number</b></ng-template>
+                <ng-template ngbTabTitle><b>Report by Month</b></ng-template>
                 <ng-template ngbTabContent>
                     <div class="tabContainer">
                         <div>
                             <div class="row form-group">
                                 <div class="col col-sm-3">
-                                    <input type="text" class="form-control" placeholder="--Employee Name/Code(Optional)--">
+                                    <input type="text" class="form-control" placeholder="--Employee Name/Code(Optional)--" [(ngModel)] = "filterValueInReportByMonth">
                                 </div>
                                 <div class="col col-sm-3">
                                     <select class="form-control" [(ngModel)]="selectedMonth">
@@ -24,40 +24,41 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <button class="btn btn-info" (click)="SearchByCard()">Search</button>
+                                    <button class="btn btn-info" (click)="getReportByMonth()">Search</button>
                                 </div>
                             </div>
-                            <div>
+                            <!-- <div>
                                 <data-table *ngIf="showGridByCard" id="gridByCard"></data-table>
-                            </div>
+                            </div> -->
                         </div>
                         <div>
 
-                            <div class="card">
+                            <div class="card" *ngFor="let attendanceItem of employeeAttendanceByMonth; index as idx">
                                 <div class="card-header" style="padding-bottom:0px;line-height:0.2;">
-                                    <div class="row" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+                                    <div class="row" (click)="attendanceItem.IsCollapsed = !attendanceItem.IsCollapsed" [attr.aria-expanded]="!attendanceItem.IsCollapsed" aria-controls="attendanceItem.PanelId">
                                         <div>
-                                            <p *ngIf="!isCollapsed">
-                                                <i class="fa fa-chevron-down" style="padding-right:10px;"></i><b>gfdsutsfcyd</b>
+                                            <p *ngIf="!attendanceItem.IsCollapsed">
+                                                <i class="fa fa-chevron-down" style="padding-right:10px;"></i><b>{{attendanceItem.EmployeeName}}</b>
                                             </p>
-                                            <p *ngIf="isCollapsed">
-                                                <i class="fa fa-chevron-right" style="padding-right:10px;"></i><b>gfdsutsfcyd</b>
+                                            <p *ngIf="attendanceItem.IsCollapsed">
+                                                <i class="fa fa-chevron-right" style="padding-right:10px;"></i><b>{{attendanceItem.EmployeeName}}</b>
                                             </p>
                                         </div>
-                                        <div style="margin-left:70%;margin-top:7px;"><p><b>Aggregated hours : 67</b></p></div>
+                                        <div style="margin-left:70%;margin-top:7px;"><p><b>Aggregated hours : {{attendanceItem.AggregatedHours}}</b></p></div>
                                     </div>
                             
                                 </div>
-                                <div id="collapseExample" [ngbCollapse]="isCollapsed">
+                                <div id="attendanceItem.PanelId" [ngbCollapse]="attendanceItem.IsCollapsed">
                                     <div>
                                         <div class="card-body">
                                             You can collapse this card by clicking Toggle
+                                            <data-table *ngIf="showGridByMonth" [id]="attendanceItem.DataGridId"></data-table>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="card">
+                            <!-- <div class="card">
                                     <div class="card-header" style="padding-bottom:0px;line-height:0.2;">
                                         <div class="row" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
                                             <div>
@@ -79,9 +80,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-
-                            <data-table *ngIf="showGridByCard" id="gridByMonth"></data-table>
+                                </div> -->
 
                         </div>
                     </div>

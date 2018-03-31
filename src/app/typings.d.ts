@@ -53,7 +53,7 @@ export interface IReportModel{
 }
 
 export interface ISwipeInfo{
-    EventDate: Date;
+    EventDate: string;
     Location: string;
     InTime: string;
     OutTime: string;
