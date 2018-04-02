@@ -1,7 +1,7 @@
 <div>
     <ngb-tabset [justify]="currentJustify" class="tabsetContainer">
-            <ngb-tab #tab1>
-                <ng-template ngbTabTitle><b>Report by Month</b></ng-template>
+            <ngb-tab #tab1 >
+                <ng-template ngbTabTitle><div (click)="tab1Clicked()"><b>Report by Month</b></div></ng-template>
                 <ng-template ngbTabContent>
                     <div class="tabContainer">
                         <div>
@@ -62,8 +62,8 @@
                 </ng-template>
             </ngb-tab>
 
-            <ngb-tab #tab2>
-                <ng-template ngbTabTitle><b>Report by Date</b></ng-template>
+            <ngb-tab #tab2 >
+                <ng-template ngbTabTitle><div (click)="tab2Clicked()"><b>Report by Date</b></div></ng-template>
                 <ng-template ngbTabContent>
                     <div class="tabContainer">
                         <div class=" row form-group">

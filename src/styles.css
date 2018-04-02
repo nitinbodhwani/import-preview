@@ -85,7 +85,7 @@ li a:hover:not(.active) {
 
 
 .div1{
-    width: 17%;
+    width: 14%;
     height: 20%;
     min-height: 70px;
     padding-top: 15px;
@@ -95,7 +95,7 @@ li a:hover:not(.active) {
     font-size: 18pt;
 }
 .div2{
-    width: 83%;
+    width: 86%;
     height: 20%;
     min-height: 70px;
     background-color: #343a40;
@@ -111,7 +111,7 @@ li a:hover:not(.active) {
 }
 
 .div3{
-    width: 17%;
+    width: 14%;
     background-color: #343a40;
     height: 80%;
     min-height: 965px;
@@ -123,9 +123,9 @@ li a:hover:not(.active) {
     z-index: 999;
 }
 .div4{
-    width: 83%;
+    width: 86%;
     position: relative;
-    left:17%;
+    left:14%;
 }
 .topHeaderSection{
     position: fixed;
@@ -212,11 +212,11 @@ li a:hover:not(.active) {
 }
 .reportSubmit{
     margin-top: 50px; 
-    margin-left: 50%;
+    margin-left: 45%;
 }
 
 #alignMonthlyHours{
-    padding-left:250px;
+    padding-left:300px;
 }
 
 /* input[type="number"]{

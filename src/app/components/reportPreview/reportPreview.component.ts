@@ -267,11 +267,14 @@ export class ReportPreviewComponent implements OnInit {
         // })
     }
 
-    SearchByCard(){
-        console.log(this.selectedMonth);
-        console.log(this.selectedYear);
+    tab1Clicked(){
+        this.selectedByDate='yyyy-mm-dd';
     }
-    SearchByDate(){
-        console.log(this.selectedByDate);
+
+    tab2Clicked(){
+        this.employeeAttendanceByMonth=[];
+        this.filterValueInReportByMonth='';
+        this.selectedMonth='--Month--';
+        this.selectedYear='--Year--'
     }
 }
