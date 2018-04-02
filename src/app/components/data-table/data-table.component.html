@@ -1,14 +1,13 @@
 <div class="dataGrid">
-  <div class="row">
-    <div class="col-md-4 filterAllBar">
+  <!-- <div class="row">
+<div class="col-md-4 filterAllBar">
       <input *ngIf="config.filtering" 
         placeholder="Filter all columns"
         [ngTableFiltering]="config.filtering"
         class="form-control"
         (tableChanged)="onChangeTable(config)" />
     </div>
-  </div>
-  <br>
+  </div> -->
   <div class="dataGridContainer">
     <ng-table [config]="config" (tableChanged)="onChangeTable(config)" (cellClicked)="onCellClick($event)" [rows]="rows" [columns]="columns">
     </ng-table>

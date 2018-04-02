@@ -157,9 +157,14 @@ li a:hover:not(.active) {
     margin-top: 40px;
 }
 
+.card-body .dataGrid{
+    margin-top: 0px !important;
+    padding-top: 0px !important;
+}
+
 .dataGridContainer{
     height: 500px;
-    width: auto;
+    width: 100%;
     top:20px;
     /* padding-top:50px; */
     position:relative;
@@ -210,16 +215,22 @@ li a:hover:not(.active) {
     margin-left: 50%;
 }
 
-input[type="number"]{
+#alignMonthlyHours{
+    padding-left:250px;
+}
+
+/* input[type="number"]{
     overflow-y:visibility=hidden;
 }
 
-/* To remove the spinner from input type=number box */
+ To remove the spinner from input type=number box 
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
     -webkit-appearance: none;
     -moz-appearance: none;
     margin: 0; 
-}
+} */
+
+
 
 
