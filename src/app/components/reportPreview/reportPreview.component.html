@@ -38,10 +38,10 @@
                                     <div class="row" (click)="attendanceItem.IsCollapsed = !attendanceItem.IsCollapsed" [attr.aria-expanded]="!attendanceItem.IsCollapsed" aria-controls="attendanceItem.PanelId">
                                         <div class="col col-sm-6">
                                             <p *ngIf="!attendanceItem.IsCollapsed">
-                                                <i class="fa fa-chevron-down" style="padding-right:10px;"></i><b>{{attendanceItem.EmployeeName}}</b>
+                                                <i class="fa fa-chevron-down" style="padding-right:10px;"></i><b>{{attendanceItem.EmployeeName}} ({{attendanceItem.EmployeeCode}})</b>
                                             </p>
                                             <p *ngIf="attendanceItem.IsCollapsed">
-                                                <i class="fa fa-chevron-right" style="padding-right:10px;"></i><b>{{attendanceItem.EmployeeName}}</b>
+                                                <i class="fa fa-chevron-right" style="padding-right:10px;"></i><b>{{attendanceItem.EmployeeName}} ({{attendanceItem.EmployeeCode}})</b>
                                             </p>
                                         </div>
                                         <div class="col col-sm-6" id="alignMonthlyHours"><p><b>Monthly hours : {{attendanceItem.AggregatedHours}}</b></p></div>
