@@ -23,6 +23,8 @@ export class ImportSectionComponent
     recievedFileData:any=[];
     showGrid: boolean = false;
     allowReportSubmit: boolean = false;
+
+    displayLoader:boolean=false;
    
 
     constructor(private http: HttpClient, public toastr: ToastsManager){
@@ -90,13 +92,21 @@ export class ImportSectionComponent
     }
 
     onReportSubmit(){
-        var consolidatedReportData = this.consolidateReportData();
-        var headers = new HttpHeaders();
-        headers.append('Content-Type', 'application/json');
-        this.http.post<ReportModel>('http://localhost/Attendance/api/report/submit', consolidatedReportData, {headers : headers}).toPromise().then(this.onSuccessfulReportSubmit.bind(null, this)).catch(this.onReportSubmitError.bind(null, this));
+        this.displayLoader=true;
+        setTimeout(t=>{
+            document.getElementById("overlay").style.display='block';
+            var consolidatedReportData = this.consolidateReportData();
+            var headers = new HttpHeaders();
+            headers.append('Content-Type', 'application/json');
+            this.http.post<ReportModel>('http://localhost/Attendance/api/report/submit', consolidatedReportData, {headers : headers}).toPromise().then(this.onSuccessfulReportSubmit.bind(null, this)).catch(this.onReportSubmitError.bind(null, this));
+        },1000);
+        
+        
     }
 
     onSuccessfulReportSubmit(self, submitReponse){
+        self.displayLoader=false;
+
         if(submitReponse){
             self.allowReportSubmit = false;
             self.toastr.success("Report saved Successfully", null,{titleClass:"SUCCESS"});
@@ -108,6 +118,7 @@ export class ImportSectionComponent
     }
 
     onReportSubmitError(self, error){
+        self.displayLoader=false;
         self.allowReportSubmit = true;
         self.toastr.error("Failed: Report submit");
         console.log(error);

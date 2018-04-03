@@ -26,4 +26,7 @@
             <button class="btn btn-info" (click)="onReportSubmit()">Submit</button>
         </div>
     </div>
+    <div *ngIf="displayLoader" id="overlay">
+        <div  class="loader"></div>
+    </div>
 </div>

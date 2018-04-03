@@ -46,6 +46,9 @@ export class ReportPreviewComponent implements OnInit {
 
     showGridByMonth: boolean = false;
     showGridByDate: boolean = false;
+
+    displayLoader:boolean=false;
+
     @ViewChildren(DataTableComponent) dataTables: QueryList<DataTableComponent>;
     @ViewChild('btnSearchByDate') btnSearchByDateRef: ElementRef;
     @ViewChild('tab1') tab1Ref: ElementRef;
@@ -73,22 +76,29 @@ export class ReportPreviewComponent implements OnInit {
     }
 
     getReportByDate(){
-        if(this.selectedByDate)
-        {            
-            var selectedDate = this.selectedByDate.day;
-            var selectedMonth = this.selectedByDate.month;
-            var selectedYear = this.selectedByDate.year;
+        this.displayLoader=true;
+        setTimeout(()=>{
+            document.getElementById("overlay").style.display='block';
 
-            var url = 'http://localhost/Attendance/api/report/date?day=' + selectedDate + '&month=' + selectedMonth + '&year=' + selectedYear;
-
-            var headers = new HttpHeaders();
-            headers.append('Content-Type', 'application/json');
-            //this.http.get('http://localhost/Attendance/api/report/date?day=1&month=12&year=2017', {headers : headers}).toPromise().then(this.onSuccessOfSearchByDate.bind(null, this)).catch(this.onReportGetFailure.bind(null, this));
-            this.http.get(url, {headers : headers}).toPromise().then(this.onSuccessOfSearchByDate.bind(null, this)).catch(this.onReportGetFailure.bind(null, this));
-        }
+            if(this.selectedByDate)
+            {            
+                var selectedDate = this.selectedByDate.day;
+                var selectedMonth = this.selectedByDate.month;
+                var selectedYear = this.selectedByDate.year;
+    
+                var url = 'http://localhost/Attendance/api/report/date?day=' + selectedDate + '&month=' + selectedMonth + '&year=' + selectedYear;
+    
+                var headers = new HttpHeaders();
+                headers.append('Content-Type', 'application/json');
+                //this.http.get('http://localhost/Attendance/api/report/date?day=1&month=12&year=2017', {headers : headers}).toPromise().then(this.onSuccessOfSearchByDate.bind(null, this)).catch(this.onReportGetFailure.bind(null, this));
+                this.http.get(url, {headers : headers}).toPromise().then(this.onSuccessOfSearchByDate.bind(null, this)).catch(this.onReportGetFailure.bind(null, this));
+            }            
+        },500);
+        
     }
 
     onSuccessOfSearchByDate(self, reportData){
+        self.displayLoader=false;
         if(reportData){
             self.showGridByDate = true;
             self.showGridByMonth = false;
@@ -167,29 +177,34 @@ export class ReportPreviewComponent implements OnInit {
     }
 
     getReportByMonth(){
-
-        if(this.selectedMonth != "--Month--" && this.selectedYear != "--Year--")
-        {
-            this.selectedMonthInReportByMonth = this.getMonthInNumbers(this.selectedMonth);
-            this.selectedYearInReportByMonth = Number(this.selectedYear);
-
-            var url : string = "";
-
-            if(this.filterValueInReportByMonth){
-                url = 'http://localhost/Attendance/api/report/aggregate?month=' + this.selectedMonthInReportByMonth + '&year=' + this.selectedYearInReportByMonth + '&filterValue=' + this.filterValueInReportByMonth;
-            }
-            else{
-                url = 'http://localhost/Attendance/api/report/aggregate?month=' + this.selectedMonthInReportByMonth + '&year=' + this.selectedYearInReportByMonth;
-            }
-            
-            var headers = new HttpHeaders();
-            headers.append('Content-Type', 'application/json');
-            //this.http.get('http://localhost/Attendance/api/report/date?day=1&month=12&year=2017', {headers : headers}).toPromise().then(this.onSuccessOfSearchByDate.bind(null, this)).catch(this.onReportGetFailure.bind(null, this));
-            this.http.get(url, {headers : headers}).toPromise().then(this.onSuccessOfSearchByMonth.bind(null, this)).catch(this.onReportGetFailure.bind(null, this));
-        }         
+        this.displayLoader=true;
+        setTimeout(()=>{
+            document.getElementById("overlay").style.display='block';
+                if(this.selectedMonth != "--Month--" && this.selectedYear != "--Year--")
+                {
+                    this.selectedMonthInReportByMonth = this.getMonthInNumbers(this.selectedMonth);
+                    this.selectedYearInReportByMonth = Number(this.selectedYear);
+        
+                    var url : string = "";
+        
+                    if(this.filterValueInReportByMonth){
+                        url = 'http://localhost/Attendance/api/report/aggregate?month=' + this.selectedMonthInReportByMonth + '&year=' + this.selectedYearInReportByMonth + '&filterValue=' + this.filterValueInReportByMonth;
+                    }
+                    else{
+                        url = 'http://localhost/Attendance/api/report/aggregate?month=' + this.selectedMonthInReportByMonth + '&year=' + this.selectedYearInReportByMonth;
+                    }
+                    
+                    var headers = new HttpHeaders();
+                    headers.append('Content-Type', 'application/json');
+                    //this.http.get('http://localhost/Attendance/api/report/date?day=1&month=12&year=2017', {headers : headers}).toPromise().then(this.onSuccessOfSearchByDate.bind(null, this)).catch(this.onReportGetFailure.bind(null, this));
+                    this.http.get(url, {headers : headers}).toPromise().then(this.onSuccessOfSearchByMonth.bind(null, this)).catch(this.onReportGetFailure.bind(null, this));
+                }      
+        },500);
+                 
     }
 
     onSuccessOfSearchByMonth(self : ReportPreviewComponent, reportData: Array<IEmployeeAttendance>){
+        self.displayLoader=false;
         if(reportData){
             self.showGridByDate = false;
             self.consolidateEmployeeAttendanceByMonth(self, reportData);
@@ -240,6 +255,7 @@ export class ReportPreviewComponent implements OnInit {
     }
 
     onReportGetFailure(self, error){
+        self.displayLoader=false;
         self.showGridByDate = false;
         self.showGridByCard = false;
         self.toastr.error("Failed: Report Search");
