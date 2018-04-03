@@ -246,6 +246,7 @@ export class ReportPreviewComponent implements OnInit {
             attendanceItem.EmployeeName = employeeAttendance.EmployeeName;
             attendanceItem.EmployeeCode = employeeAttendance.EmployeeCode;
             attendanceItem.AggregatedHours = employeeAttendance.AggregatedHours;
+            attendanceItem.MEP = employeeAttendance.MEP;
             attendanceItem.IsCollapsed = true;
             attendanceItem.PanelId = "AP" + (index + 1);
             attendanceItem.DataGridId = "DG" + (index + 1);

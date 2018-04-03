@@ -1,9 +1,10 @@
 import { SwipeInfo } from "./SwipeInfo";
 
 export class EmployeeAttendance{
-    public EmployeeName: string;
+    EmployeeName: string;
     EmployeeCode: string;
-    public AggregatedHours: number;
+    AggregatedHours: number;
+    MEP: number;
     SwipeInfoCollection: Array<SwipeInfo>;
     IsCollapsed: boolean;
     PanelId: string;

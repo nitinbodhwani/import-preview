@@ -38,19 +38,19 @@
                                     <div class="row" (click)="attendanceItem.IsCollapsed = !attendanceItem.IsCollapsed" [attr.aria-expanded]="!attendanceItem.IsCollapsed" aria-controls="attendanceItem.PanelId">
                                         <div class="col col-sm-6">
                                             <p *ngIf="!attendanceItem.IsCollapsed">
-                                                <i class="fa fa-chevron-down" style="padding-right:10px;"></i><b>{{attendanceItem.EmployeeName}}</b>
+                                                <i class="fa fa-chevron-down" style="padding-right:10px;"></i><b>{{attendanceItem.EmployeeName}} ({{attendanceItem.EmployeeCode}})</b>
                                             </p>
                                             <p *ngIf="attendanceItem.IsCollapsed">
-                                                <i class="fa fa-chevron-right" style="padding-right:10px;"></i><b>{{attendanceItem.EmployeeName}}</b>
+                                                <i class="fa fa-chevron-right" style="padding-right:10px;"></i><b>{{attendanceItem.EmployeeName}} ({{attendanceItem.EmployeeCode}})</b>
                                             </p>
                                         </div>
 
-                                        <div class="col col-sm-6">
-                                            <div class="row" id="alignMonthlyHours">
-                                                <div class="col col-sm-4"><p><b>Monthly hours : {{attendanceItem.AggregatedHours}}</b></p></div>
-                                                <div class="col col-sm-2"><p><b>MEP : {{attendanceItem.AggregatedHours}}</b></p></div>
-                                            </div>  
+                                        <div class="col col-sm-4" id="alignMonthlyHours">
+                                            <div ><p><b>Monthly hours : {{attendanceItem.AggregatedHours}}</b></p></div>     
                                         </div>
+                                        <div class="col col-sm-2">      
+                                            <div ><p><b>MEP : {{attendanceItem.MEP}}</b></p></div>
+                                        </div> 
                                     </div>
                             
                                 </div>
