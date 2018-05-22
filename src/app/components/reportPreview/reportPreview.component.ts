@@ -17,7 +17,8 @@ import { EmployeeAttendance } from '../../models/EmployeeAttendance';
 export class ReportPreviewComponent implements OnInit {
     currentJustify = 'justified';
     selectedByDate: any;
-    isCollapsed = false;
+    // isCollapsed = false;
+    collapseAll = true;
 
     selectedMonthInReportByMonth: number;
     selectedYearInReportByMonth: number;
@@ -73,6 +74,20 @@ export class ReportPreviewComponent implements OnInit {
       ];
 
     constructor(private http: HttpClient, public toastr: ToastsManager){
+    }
+
+    toggleCards() {
+        this.collapseAll = !this.collapseAll;
+
+        if (this.collapseAll) {
+            this.employeeAttendanceByMonth.forEach(attendanceItem => {
+                attendanceItem.IsCollapsed = true;
+            });
+        } else {
+            this.employeeAttendanceByMonth.forEach(attendanceItem => {
+                attendanceItem.IsCollapsed = false;
+            });
+        }
     }
 
     getReportByDate(){
@@ -247,6 +262,7 @@ export class ReportPreviewComponent implements OnInit {
             attendanceItem.EmployeeCode = employeeAttendance.EmployeeCode;
             attendanceItem.AggregatedHours = employeeAttendance.AggregatedHours;
             attendanceItem.MEP = employeeAttendance.MEP;
+            attendanceItem.TDC = employeeAttendance.TDC;
             attendanceItem.IsCollapsed = true;
             attendanceItem.PanelId = "AP" + (index + 1);
             attendanceItem.DataGridId = "DG" + (index + 1);

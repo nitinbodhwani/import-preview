@@ -65,5 +65,6 @@ export interface IEmployeeAttendance{
     EmployeeCode: string;
     AggregatedHours: number;
     MEP: number;
+    TDC: number;
     SwipeInfoCollection: Array<ISwipeInfo>;
 }

@@ -23,8 +23,12 @@
                                         </option>
                                     </select>
                                 </div>
-                                <div>
-                                    <button class="btn btn-info" (click)="getReportByMonth()">Search</button>
+                                <div class="col col-sm-3">
+                                    <div class="row">
+                                        <div>
+                                            <button class="btn btn-info" (click)="getReportByMonth()">Search</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <!-- <div>
@@ -32,11 +36,13 @@
                             </div> -->
                         </div>
                         <div>
-
-                            <div class="card" *ngFor="let attendanceItem of employeeAttendanceByMonth; index as idx">
+                            <div *ngIf="employeeAttendanceByMonth.length > 0">
+                                <a (click)="toggleCards()" style="color: black; cursor: pointer; font-weight: bold">{{collapseAll ? '> Expand All' : '> Collapse All'}}</a>
+                            </div>
+                            <div class="card" *ngFor="let attendanceItem of employeeAttendanceByMonth; index as idx" id="employeeDetails">
                                 <div class="card-header" style="padding-bottom:0px;line-height:0.2;">
                                     <div class="row" (click)="attendanceItem.IsCollapsed = !attendanceItem.IsCollapsed" [attr.aria-expanded]="!attendanceItem.IsCollapsed" aria-controls="attendanceItem.PanelId">
-                                        <div class="col col-sm-6">
+                                        <div class="col col-sm-4">
                                             <p *ngIf="!attendanceItem.IsCollapsed">
                                                 <i class="fa fa-chevron-down" style="padding-right:10px;"></i><b>{{attendanceItem.EmployeeName}} ({{attendanceItem.EmployeeCode}})</b>
                                             </p>
@@ -50,6 +56,9 @@
                                         </div>
                                         <div class="col col-sm-2">      
                                             <div ><p><b>MEP : {{attendanceItem.MEP}}</b></p></div>
+                                        </div> 
+                                        <div class="col col-sm-2">      
+                                            <div ><p><b>TDC : {{attendanceItem.TDC}}</b></p></div>
                                         </div> 
                                     </div>
                             

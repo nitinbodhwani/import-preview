@@ -5,6 +5,7 @@ export class EmployeeAttendance{
     EmployeeCode: string;
     AggregatedHours: number;
     MEP: number;
+    TDC: number;
     SwipeInfoCollection: Array<SwipeInfo>;
     IsCollapsed: boolean;
     PanelId: string;
