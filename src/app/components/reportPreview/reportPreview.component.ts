@@ -7,7 +7,7 @@ import { DataTableComponent } from '../data-table/data-table.component';
 import { Http, Response } from '@angular/http'; 
 import 'rxjs/add/operator/map';
 import { EmployeeAttendance } from '../../models/EmployeeAttendance';
-
+import * as XLSX from  'xlsx'
 
 @Component({
     selector:'report-preview-component',
@@ -49,8 +49,7 @@ export class ReportPreviewComponent implements OnInit {
     showGridByDate: boolean = false;
 
     displayLoader:boolean=false;
-
-    @ViewChildren(DataTableComponent) dataTables: QueryList<DataTableComponent>;
+@ViewChildren(DataTableComponent) dataTables: QueryList<DataTableComponent>;
     @ViewChild('btnSearchByDate') btnSearchByDateRef: ElementRef;
     @ViewChild('tab1') tab1Ref: ElementRef;
     @ViewChild('tab2') tab2Ref: ElementRef;
@@ -309,5 +308,41 @@ export class ReportPreviewComponent implements OnInit {
         this.filterValueInReportByMonth='';
         this.selectedMonth='--Month--';
         this.selectedYear='--Year--'
+    }
+
+    exportReport() {
+        var exportData = [];
+        this.employeeAttendanceByMonth.forEach(function(attendanceItem, index){
+
+            var  headerObj = {
+                "Employee Info" : "Name: " + attendanceItem.EmployeeName + " Code: " + attendanceItem.EmployeeCode + " Monthly Hours: " + attendanceItem.AggregatedHours + " MEP: " + attendanceItem.MEP + " TDC: " + attendanceItem.TDC,
+                "Event Date" : "",
+                "In Time": "",
+                "Out Time": "",
+                "Total Hours": ""
+            };
+
+            exportData.push(headerObj);
+
+            attendanceItem.SwipeInfoCollection.forEach(swipeInfoItem => {
+                var contentObj = {
+                    "Employee Info" : "",
+                    "Event Date" : swipeInfoItem["EventDate"],
+                    "In Time": swipeInfoItem["InTime"],
+                    "Out Time": swipeInfoItem["OutTime"],
+                    "Total Hours": swipeInfoItem["TotalHours"]
+                };
+
+                exportData.push(contentObj);
+            });
+        });
+
+        var ws = XLSX.utils.json_to_sheet(exportData, {header:["Employee Info","Event Date","In Time","Out Time","Total Hours"]});
+
+            /* add to workbook */
+        var wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, "Monthly Attendance");
+
+        XLSX.writeFile(wb, "MonthlyAttendance.xlsx");
     }
 }

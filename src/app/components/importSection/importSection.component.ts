@@ -6,7 +6,6 @@ import { RequestOptions} from '@angular/http';
 import { ReportModel } from '../../models/ReportModel';
 import { ReportDataModel } from '../../models/ReportDataModel';
 import { ToastsManager } from 'ng2-toastr';
-import { post } from 'selenium-webdriver/http';
 
 @Component({
     selector:'import-section-comp',

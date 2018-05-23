@@ -36,8 +36,16 @@
                             </div> -->
                         </div>
                         <div>
-                            <div *ngIf="employeeAttendanceByMonth.length > 0">
-                                <a (click)="toggleCards()" style="color: black; cursor: pointer; font-weight: bold">{{collapseAll ? '> Expand All' : '> Collapse All'}}</a>
+                            <div *ngIf="employeeAttendanceByMonth.length > 0" class= "row">
+                                <div class= "col col-sm-6">
+                                    <a (click)="toggleCards()" style="color: black; cursor: pointer; font-weight: bold">{{collapseAll ? '> Expand All' : '> Collapse All'}}</a>
+                                </div>
+                                <div class= "col col-sm-6">
+                                    <div style="margin-left: 90%;">
+                                        <!-- <a (click)="exportReport()">Download report</a> -->
+                                        <i class="fa fa-download" (click)="exportReport()" style="font-size: 40px; cursor: pointer;"></i>
+                                    </div>
+                                </div>
                             </div>
                             <div class="card" *ngFor="let attendanceItem of employeeAttendanceByMonth; index as idx" id="employeeDetails">
                                 <div class="card-header" style="padding-bottom:0px;line-height:0.2;">
