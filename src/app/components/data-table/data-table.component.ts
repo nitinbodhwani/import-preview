@@ -21,7 +21,7 @@ export class DataTableComponent implements OnInit{
     public config:any = {
       paging: true,
       sorting: {columns: this.columns},
-      filtering: {filterString: ''},
+      //filtering: {filterString: ''},
       className: ['table-striped', 'table-bordered']
     };
   

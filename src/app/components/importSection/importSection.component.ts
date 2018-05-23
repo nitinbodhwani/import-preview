@@ -6,6 +6,7 @@ import { RequestOptions} from '@angular/http';
 import { ReportModel } from '../../models/ReportModel';
 import { ReportDataModel } from '../../models/ReportDataModel';
 import { ToastsManager } from 'ng2-toastr';
+import { post } from 'selenium-webdriver/http';
 
 @Component({
     selector:'import-section-comp',
@@ -25,6 +26,7 @@ export class ImportSectionComponent
     allowReportSubmit: boolean = false;
 
     displayLoader:boolean=false;
+    data: any;
    
 
     constructor(private http: HttpClient, public toastr: ToastsManager){
@@ -35,8 +37,10 @@ export class ImportSectionComponent
         {title: 'Panel', name: 'Panel', sort: ''},
         {title: 'Event', name: 'Event', sort: ''},
         {title: 'Event Date/Time', name: 'Event Date/Time'},
-        {title: 'Card No.', name: 'Card No', filtering: {filterString: '', placeholder: 'Filter by Card Number'}, sort: 'asc'},
-        {title: 'Card Name', name: 'Card Name', filtering: {filterString: '', placeholder: 'Filter by Card Name'}},
+        // {title: 'Card No.', name: 'Card No', filtering: {filterString: '', placeholder: 'Filter by Card Number'}, sort: 'asc'},
+        // {title: 'Card Name', name: 'Card Name', filtering: {filterString: '', placeholder: 'Filter by Card Name'}},
+        {title: 'Card No.', name: 'Card No'},
+        {title: 'Card Name', name: 'Card Name'},
         {title: 'Location', name: 'Location', sort: 'asc'},
         {title: 'Reader Id', name: 'Rdr'},
         {title: 'In', name: 'In'},
@@ -50,7 +54,7 @@ export class ImportSectionComponent
     }
 
     SelectFile(){
-        document.getElementById('hideFileInputButton').click();                    
+        document.getElementById('hideFileInputButton').click();
     }
 
     DataRecieved(event){
@@ -98,7 +102,25 @@ export class ImportSectionComponent
             var consolidatedReportData = this.consolidateReportData();
             var headers = new HttpHeaders();
             headers.append('Content-Type', 'application/json');
-            this.http.post<ReportModel>('http://localhost/Attendance/api/report/submit', consolidatedReportData, {headers : headers}).toPromise().then(this.onSuccessfulReportSubmit.bind(null, this)).catch(this.onReportSubmitError.bind(null, this));
+
+            // var splittedReportDataList = [];
+            // var recordLimit = 5000;
+            // var reportDataListCount = (consolidatedReportData.ReportDataList.length % recordLimit) > 0 ? (consolidatedReportData.ReportDataList.length / recordLimit) + 1 : (consolidatedReportData.ReportDataList.length / recordLimit);
+
+            // for(let i = 0; i< reportDataListCount; i++){
+            //     let sliceStartIndex = (i * recordLimit) > 0 ? (i * recordLimit) + 1 : (i * recordLimit);
+            //     let sliceEndIndex = sliceStartIndex != 0 ? sliceStartIndex + 4999 : sliceStartIndex + 5000;
+
+            //     splittedReportDataList.push(consolidatedReportData.ReportDataList.slice(sliceStartIndex, sliceEndIndex))
+            // }
+
+            // splittedReportDataList.forEach(element => {
+            //     let postData = consolidatedReportData;
+            //     postData.ReportDataList = element;
+            //     this.http.post<ReportModel>('http://localhost/Attendance/api/report/submit', postData, {headers : headers}).toPromise().then(this.onSuccessfulReportSubmit.bind(null, this)).catch(this.onReportSubmitError.bind(null, this));
+            // });
+            // consolidatedReportData.ReportDataList = consolidatedReportData.ReportDataList.slice(0, 5000);
+             this.http.post<ReportModel>('http://157.237.220.192/Attendance/api/report/submit', consolidatedReportData, {headers : headers}).toPromise().then(this.onSuccessfulReportSubmit.bind(null, this)).catch(this.onReportSubmitError.bind(null, this));
         },1000);
         
         
@@ -140,6 +162,7 @@ export class ImportSectionComponent
         consolidatedReportData.ReportDataList = new Array<ReportDataModel>();
 
         this.recievedFileData.Sheet1.forEach(element => {
+            try {
             let reportDataItem : ReportDataModel = new ReportDataModel();
             reportDataItem.ReportDataId = 0;
             reportDataItem.ReportId = 0;
@@ -157,7 +180,10 @@ export class ImportSectionComponent
             reportDataItem.Affiliation =  element["Affiliation"];
             reportDataItem.AlarmText =  element["Alarm Text"];
             consolidatedReportData.ReportDataList.push(reportDataItem);
-
+            } catch (error) {
+                console.log(element);
+                throw error;
+            }
         });
 
         return consolidatedReportData;

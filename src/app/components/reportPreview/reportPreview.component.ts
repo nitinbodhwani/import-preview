@@ -101,7 +101,7 @@ export class ReportPreviewComponent implements OnInit {
                 var selectedMonth = this.selectedByDate.month;
                 var selectedYear = this.selectedByDate.year;
     
-                var url = 'http://localhost/Attendance/api/report/date?day=' + selectedDate + '&month=' + selectedMonth + '&year=' + selectedYear;
+                var url = 'http://157.237.220.192/Attendance/api/report/date?day=' + selectedDate + '&month=' + selectedMonth + '&year=' + selectedYear;
     
                 var headers = new HttpHeaders();
                 headers.append('Content-Type', 'application/json');
@@ -203,10 +203,10 @@ export class ReportPreviewComponent implements OnInit {
                     var url : string = "";
         
                     if(this.filterValueInReportByMonth){
-                        url = 'http://localhost/Attendance/api/report/aggregate?month=' + this.selectedMonthInReportByMonth + '&year=' + this.selectedYearInReportByMonth + '&filterValue=' + this.filterValueInReportByMonth;
+                        url = 'http://157.237.220.192/Attendance/api/report/aggregate?month=' + this.selectedMonthInReportByMonth + '&year=' + this.selectedYearInReportByMonth + '&filterValue=' + this.filterValueInReportByMonth;
                     }
                     else{
-                        url = 'http://localhost/Attendance/api/report/aggregate?month=' + this.selectedMonthInReportByMonth + '&year=' + this.selectedYearInReportByMonth;
+                        url = 'http://157.237.220.192/Attendance/api/report/aggregate?month=' + this.selectedMonthInReportByMonth + '&year=' + this.selectedYearInReportByMonth;
                     }
                     
                     var headers = new HttpHeaders();
@@ -281,7 +281,7 @@ export class ReportPreviewComponent implements OnInit {
     ngOnInit(){
 
         this.years=[];
-        this.http.get('/assets/config.json')
+        this.http.get('/AttendanceApp/assets/config.json')
         .subscribe((data : any)=>{
             this.minYear=data.startYear;
             this.maxYear=data.maxYear;
