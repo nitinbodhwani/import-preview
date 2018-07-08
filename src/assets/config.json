@@ -1,4 +1,5 @@
 {
     "startYear":2015,
-    "maxYear":2025
+    "maxYear":2025,
+    "apihost": "157.237.220.192"
 }

@@ -1,4 +1,4 @@
-import {Component, ViewChild, ElementRef, ViewContainerRef, Input} from '@angular/core';
+import {Component, ViewChild, ElementRef, ViewContainerRef, Input, OnInit} from '@angular/core';
 import { IReportColumnOptions, IReportDataModel, IReportModel } from '../../typings';
 import { DataTableComponent } from '../data-table/data-table.component';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
@@ -12,7 +12,7 @@ import { ToastsManager } from 'ng2-toastr';
     templateUrl:'./importSection.component.html'
 })
 
-export class ImportSectionComponent
+export class ImportSectionComponent implements OnInit
 {
 
     @ViewChild('fileName') fnameCtrl:any;
@@ -26,9 +26,16 @@ export class ImportSectionComponent
 
     displayLoader:boolean=false;
     data: any;
-   
+    apihost: string;
 
     constructor(private http: HttpClient, public toastr: ToastsManager){
+    }
+
+    ngOnInit(){
+        this.http.get('/AttendanceApp/assets/config.json')
+        .subscribe((data : any)=>{
+            this.apihost = data.apihost;
+        })
     }
   
     reportColumnOptions:Array<IReportColumnOptions> = [
@@ -119,7 +126,8 @@ export class ImportSectionComponent
             //     this.http.post<ReportModel>('http://localhost/Attendance/api/report/submit', postData, {headers : headers}).toPromise().then(this.onSuccessfulReportSubmit.bind(null, this)).catch(this.onReportSubmitError.bind(null, this));
             // });
             // consolidatedReportData.ReportDataList = consolidatedReportData.ReportDataList.slice(0, 5000);
-             this.http.post<ReportModel>('http://157.237.220.192/Attendance/api/report/submit', consolidatedReportData, {headers : headers}).toPromise().then(this.onSuccessfulReportSubmit.bind(null, this)).catch(this.onReportSubmitError.bind(null, this));
+
+             this.http.post<ReportModel>('http://' + this.apihost +'/Attendance/api/report/submit', consolidatedReportData, {headers : headers}).toPromise().then(this.onSuccessfulReportSubmit.bind(null, this)).catch(this.onReportSubmitError.bind(null, this));
         },1000);
         
         
